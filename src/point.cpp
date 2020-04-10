@@ -11,26 +11,6 @@ void point_t::update_pos(float dx, float dy)
     y += dy;
 }
 
-float point_t::get_radius()
-{
-    return radius;
-}
-
-float point_t::get_alpha()
-{
-    return alpha;
-}
-
-float point_t::get_x()
-{
-    return x;
-}
-
-float point_t::get_y()
-{
-    return y;
-}
-
 void point_t::draw()
 {
   float i;

@@ -11,10 +11,10 @@ private:
   float radius;
 
   constexpr static float color[3] = {1, 0, 0}; // RGB
-  constexpr static float default_radius = 0.03;
+  constexpr static float default_radius = 0.025;
   constexpr static float default_alpha = 1;
   const float delta_radius = 0.0005;
-  const float delta_alpha = 0.01;
+  const float delta_alpha = 0.005;
 
 public:
   point_t() : x(0), y(0), alpha(default_alpha), radius(default_radius) {};
@@ -26,10 +26,10 @@ public:
       radius(p.radius) {};
 
   void update_pos(float, float);
-  float get_alpha();
-  float get_x();
-  float get_y();
-  float get_radius();
+  float get_alpha() { return alpha; };
+  float get_x() { return x; };
+  float get_y() { return y; };
+  float get_radius() { return radius; };
   void draw();
   void update();
 

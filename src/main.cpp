@@ -4,28 +4,33 @@
 #include <GL/glut.h>
 #include "track.h"
 
-using namespace std;
+track track_g = track(0, 0);
 
-track track_g;
+void Special(int key, int x, int y)
+{
+    float s = 0.03 + 0 * x + 0 * y; // step size
 
-// macros
-#define H 800
-#define W 800
+    switch(key)
+    {
+    case GLUT_KEY_UP:
+        track_g.move(0, s);
+        break;
+    case GLUT_KEY_DOWN:
+        track_g.move(0, -s);
+        break;
+    case GLUT_KEY_LEFT:
+        track_g.move(-s, 0);
+        break;
+    case GLUT_KEY_RIGHT:
+        track_g.move(s, 0);
+        break;
+    }
+}
 
 void Keyboard(unsigned char key, int x, int y)
 {
-  float s = 0.03; // step size
-
-  if (key == 27)
-    exit(0);
-  if (key == 'w')
-      track_g.move(0, s);
-  if (key == 's')
-      track_g.move(0, -s);
-  if (key == 'a')
-      track_g.move(-s, 0);
-  if (key == 'd')
-      track_g.move(s, 0);
+    if (key + 0*x + 0*y == 27) // escape
+        exit(0);
 }// End of Keyboard function 
 
 void Display(void)
@@ -43,15 +48,14 @@ void Display(void)
 
 int main(int argc, char *argv[])
 {
-  track_g = track(0, 0);
-
   glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
 
   glutInitWindowPosition(0, 0);
-  glutInitWindowSize(H, W);
+  glutInitWindowSize(800, 800); // W, H
   glutCreateWindow("running dot");
 
+  glutSpecialFunc(Special);
   glutDisplayFunc(Display);
   glutKeyboardFunc(Keyboard);
 

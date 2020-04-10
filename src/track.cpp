@@ -24,7 +24,9 @@ void track::update()
     std::list<point_t>::iterator it;
 
     for (it = tail.begin(); it != tail.end(); it++)
+    {
         it->update();
+    }
     if (tail.size() != 0 && tail.front().get_alpha() == 0)
         tail.pop_front();
 }
